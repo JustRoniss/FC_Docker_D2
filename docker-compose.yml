@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: mysql-desafio2
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: db_desafio
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/mysql_volume:/var/lib/mysql
+    networks:
+      - network_desafio2
+    tty: true
+
+  app:
+    build:
+      context: app/
+    container_name: app-desafio2
+    networks:
+      - network_desafio2
+    volumes:
+      - ./app/:/usr/src/app
+    ports:
+      - "3000:3000"
+    depends_on: 
+      - db
+
+
+
+
+networks:
+  network_desafio2:
+    driver: bridge
+  
+
