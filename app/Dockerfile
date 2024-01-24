@@ -2,10 +2,12 @@ FROM node:18.15.0-bullseye
 
 WORKDIR /usr/src/app
 
+#troubleshotting: estou tentando copiar primeiro os arquivos q listam as dependencias para instala-las.
+COPY package*.json ./
+RUN npm install
+
 #Copiando tudo da pasta atual(onde está sendo feito o build da imagem) para a pasta atual do container(que no caso é a pasta do WORKDIR)
 COPY . .
-
-RUN npm install
 
 ENV DOCKERIZE_VERSION v0.7.0
 
