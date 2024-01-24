@@ -32,7 +32,17 @@ services:
     depends_on: 
       - db
 
-
+  server:
+    image: nginx:latest
+    container_name: server-desafio2
+    networks:
+      - network_desafio2
+    ports:
+      - "8080:80"
+    volumes:
+      - ./server/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
 
 
 networks:
