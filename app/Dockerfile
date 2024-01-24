@@ -5,6 +5,8 @@ WORKDIR /usr/src/app
 #Copiando tudo da pasta atual(onde está sendo feito o build da imagem) para a pasta atual do container(que no caso é a pasta do WORKDIR)
 COPY . .
 
+RUN npm install
+
 ENV DOCKERIZE_VERSION v0.7.0
 
 RUN apt-get update 
